@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+  build:
+    commands:
+      # Copy artifact.zip (input artifact) from current dir to new S3 folder
+      - pip install awscli
+      - aws s3 cp artifact.zip s3://YOUR-BUCKET-NAME/final-folder/artifact.zip
