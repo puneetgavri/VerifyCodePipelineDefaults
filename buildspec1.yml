@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - powershell Compress-Archive -Path src\* -DestinationPath artifact.zip
+artifacts:
+  files:
+    - artifact.zip
+  discard-paths: yes
+  base-directory: .
