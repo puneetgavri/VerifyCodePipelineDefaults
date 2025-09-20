@@ -1,10 +1,20 @@
 version: 0.2
+
 phases:
   build:
     commands:
-      - powershell Compress-Archive -Path src\* -DestinationPath artifact.zip
+      # Create sample files and zip them
+      - echo "Creating sample files..."
+      - echo "Hello World" > file1.txt
+      - echo "Build completed" > file2.txt
+      - mkdir output
+      - move file1.txt output/
+      - move file2.txt output/
+      
+      # Create zip archive
+      - powershell Compress-Archive -Path output/* -DestinationPath my-artifact.zip -Force
+
 artifacts:
   files:
-    - artifact.zip
+    - my-artifact.zip
   discard-paths: yes
-  base-directory: .
